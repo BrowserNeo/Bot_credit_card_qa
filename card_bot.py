@@ -1,9 +1,6 @@
 # подключение библиотек
 # В google colab добавить: !pip install pyTelegramBotAPI
 # В google colab добавить: !pip install Faker
-# для установки необходимо в файл requirements.text добавить строки
-# 'PyTelegramBotApi'
-# 'faker'
 
 from telebot import TeleBot, types
 from faker import Faker
