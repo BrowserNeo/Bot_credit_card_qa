@@ -24,6 +24,12 @@ card_type_keybaord.row(
 )
 
 
+@bot.message_handler(content_types=["new_chat_members"])
+def handler_new_member(message):
+    bot.send_message(message.chat.id, "{} {}, 🤝 Добро пожаловать в чат" 
+                     .format(message.from_user.first_name,
+                             message.from_user.last_name), disable_web_page_preview=True)
+
 # обработчик команды '/start'
 @bot.message_handler(commands=['start'])
 def start_command_handler(message: types.Message):
