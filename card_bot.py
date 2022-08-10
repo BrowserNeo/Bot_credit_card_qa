@@ -30,7 +30,7 @@ def start_command_handler(message: types.Message):
     # отправляем ответ на команду '/start'
     bot.send_message(
         chat_id=message.chat.id, # id чата, в который необходимо направить сообщение
-        text='Привет! Я умею генерировать номер тестовой банковской карты\nВыбери тип карты:', # текст сообщения
+        text='Привет! Напишу номер тестовой банковской карты\nВыбери тип карты:', # текст сообщения
         reply_markup=card_type_keybaord,
     )
 
