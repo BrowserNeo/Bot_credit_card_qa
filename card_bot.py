@@ -1,14 +1,11 @@
-# подключение библиотек
-# В google colab добавить: !pip install pyTelegramBotAPI
-# В google colab добавить: !pip install Faker
 from telebot import TeleBot, types
 from faker import Faker
 
 
-bot = TeleBot(token='5348041951:AAH-u86NQyJrjymcs1GSXUaCVZbVt6K8FYg'
+bot = TeleBot(token='<<<INSERT TOKEN>>>'
 , parse_mode='html') # создание бота
 
-faker = Faker() # утилита для генерации номеров кредитных карт
+faker = Faker() # generate numbers
 
 # объект клавиаутры
 card_type_keybaord = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -55,7 +52,7 @@ def message_handler(message: types.Message):
         )
         return
 
-    # card_type может принимать одно из зачений ['maestro', 'mastercard', 'visa13', 'visa16', 'visa19',
+    # card_type может принимать ['maestro', 'mastercard', 'visa13', 'visa16', 'visa19',
     # 'amex', 'discover', 'diners', 'jcb15', 'jcb16']
     card_number = faker.credit_card_number(card_type)
     bot.send_message(
