@@ -1,12 +1,12 @@
 # подключение библиотек
 # В google colab добавить: !pip install pyTelegramBotAPI
 # В google colab добавить: !pip install Faker
-
 from telebot import TeleBot, types
 from faker import Faker
 
 
-bot = TeleBot(token='Вставить_свой_токен', parse_mode='html') # создание бота
+bot = TeleBot(token='<<<INSERT TOKEN>>>'
+, parse_mode='html') # создание бота
 
 faker = Faker() # утилита для генерации номеров кредитных карт
 
@@ -23,28 +23,21 @@ card_type_keybaord.row(
     types.KeyboardButton(text='JCB'),
 )
 
-
-@bot.message_handler(content_types=["new_chat_members"])
-def handler_new_member(message):
-    bot.send_message(message.chat.id, "{} {}, 🤝 Добро пожаловать в чат" 
-                     .format(message.from_user.first_name,
-                             message.from_user.last_name), disable_web_page_preview=True)
-
 # обработчик команды '/start'
 @bot.message_handler(commands=['start'])
 def start_command_handler(message: types.Message):
     # отправляем ответ на команду '/start'
     bot.send_message(
         chat_id=message.chat.id, # id чата, в который необходимо направить сообщение
-        text='Привет! Напишу номер тестовой банковской карты\nВыбери тип карты:', # текст сообщения
+        text=' \n юхууу... кого я вижу \n ...... ' + message.from_user.first_name + ' ' + message.from_user.last_name + ' !!!     🤝    привет!\n \n сгенерировать тебе номер тестовой банковской карты?\n \nВыбери тип:', # текст сообщения
         reply_markup=card_type_keybaord,
     )
+
 
 # обработчик всех остальных сообщений
 @bot.message_handler()
 def message_handler(message: types.Message):
-    # проверяем текст сообщения на совпадение с текстом какой либо из кнопок
-    # в зависимости от типа карты присваем занчение переменной 'card_type'
+
     if message.text == 'VISA':
         card_type = 'visa'
     elif message.text == 'Mastercard':
@@ -58,26 +51,34 @@ def message_handler(message: types.Message):
         # выводим ошибку
         bot.send_message(
             chat_id=message.chat.id,
-            text='Не понимаю тебя :(',
+            text='Прости, но я не понимаю тебя :(',
         )
         return
 
-    # получаем номер тестовой карты выбранного типа
     # card_type может принимать одно из зачений ['maestro', 'mastercard', 'visa13', 'visa16', 'visa19',
     # 'amex', 'discover', 'diners', 'jcb15', 'jcb16']
     card_number = faker.credit_card_number(card_type)
-    # и выводим пользователю
     bot.send_message(
         chat_id=message.chat.id,
-        text=f'Тестовая карта {card_type}:\n<code>{card_number}</code>'
+        text=f'Готово! Тестовая карта {card_type}:'        
+    )
+    bot.send_message(
+        chat_id=message.chat.id,
+        text=f'\n<code>{card_number}</code>'
+    )
+    bot.send_message(
+        chat_id=message.chat.id,
+        text='\n ...обращайся еще, а то скучновато здесь одному...'
     )
 
 
 # главная функция программы
 def main():
-    # запускаем нашего бота
+    # запускаем бота
     bot.infinity_polling()
 
 
 if __name__ == '__main__':
-    main()
+    main() 
+    
+   
