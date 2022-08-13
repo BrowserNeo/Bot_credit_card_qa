@@ -5,7 +5,7 @@ from telebot import TeleBot, types
 from faker import Faker
 
 
-bot = TeleBot(token='5433258398:AAE-iXcveUB5Dnrd7qhzB7gVdRzWEcLQITU'
+bot = TeleBot(token='5348041951:AAH-u86NQyJrjymcs1GSXUaCVZbVt6K8FYg'
 , parse_mode='html') # создание бота
 
 faker = Faker() # утилита для генерации номеров кредитных карт
