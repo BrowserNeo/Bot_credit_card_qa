@@ -1,4 +1,4 @@
-Notes
+Note
 
 ## Bot_credit_card_for_test
 #
